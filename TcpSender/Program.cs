@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
 
 namespace TcpSender
 {
@@ -6,7 +8,12 @@ namespace TcpSender
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");    
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            var client = new Client("localhost", 8080);
+            Console.WriteLine("Input command");
+            var command = Console.ReadLine();
+            CommandBuilder.Build(command).ForEach(c => c.Execute(client));
+            Console.ReadKey();
         }
     }
 }
