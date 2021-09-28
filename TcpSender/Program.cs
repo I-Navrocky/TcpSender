@@ -11,9 +11,19 @@ namespace TcpSender
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var client = new Client("localhost", 8080);
             Console.WriteLine("Input command");
-            var command = Console.ReadLine();
-            CommandBuilder.Build(command).ForEach(c => c.Execute(client));
-            Console.ReadKey();
+
+            while (true)
+            {
+                var command = Console.ReadLine();
+
+                if (command.Equals("q"))
+                    break;
+
+                CommandBuilder.Build(command).ForEach(c => c.Execute(client));
+
+            }
+
+            Console.WriteLine("End");
         }
     }
 }

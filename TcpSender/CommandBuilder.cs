@@ -16,7 +16,10 @@ namespace TcpSender
             foreach (string comm in commList)
             {
                 if (comm.Equals("send"))
-                    res.Add(new SendCommand());                
+                    res.Add(new SendCommand());
+
+                if (comm.Equals("sendbytes"))
+                    res.Add(new SendBytesCommand());
             }
 
             return res;
